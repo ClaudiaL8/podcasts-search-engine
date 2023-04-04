@@ -1,22 +1,18 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { Container } from '@mui/material'
-import Podcaster from './pages/Podcaster'
-import './App.css'
+import Header from './layout/Header'
+import Main from './layout/Main'
+import './stylesheets/App.css'
 
 function App() {
   return (
-    <Container className="App">
-      <header>HEADER</header>
+    <div className="App">
+      <header className="header">
+        <Header />
+      </header>
       <main className="main">
-        <Router>
-          <Routes>
-            <Route exact path="/" element={<Podcaster />} />
-          </Routes>
-        </Router>
+        <Main />
       </main>
-      <footer>FOOTER</footer>
-    </Container>
+    </div>
   )
 }
 

@@ -1,20 +1,29 @@
+import '../stylesheets/podcastsList.css'
+
 function ListOfPoadcasts({ podcasts }) {
   return (
-    <ul className="podcasts">
-      {podcasts.map((podcast) => (
-        <li className="podcast" key={podcast.id}>
-          <img src={podcast.image} alt={podcast.title}></img>
-          <div>
-            <h3>{podcast.title}</h3>
-            <p>{podcast.author}</p>
-          </div>
-        </li>
-      ))}
-    </ul>
+    <div className="podcaster-list__container">
+      <input
+        class="podcaster-list__input"
+        type="text"
+        placeholder="Ingrese un elemento"
+      />
+      <ul className="podcaster-list__list">
+        {podcasts.map((podcast) => (
+          <li className="podcaster-list__item" key={podcast.id}>
+            <img src={podcast.image} alt={podcast.title}></img>
+            <div>
+              <h3>{podcast.title}</h3>
+              <p>Author: {podcast.author}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
 
-function NoPoadcastsResults() {
+function NoPodcastsResults() {
   return <p>no se encontraron resultados </p>
 }
 
@@ -23,6 +32,6 @@ export function PodcasterList({ podcasts }) {
   return hasPoadcasts ? (
     <ListOfPoadcasts podcasts={podcasts} />
   ) : (
-    <NoPoadcastsResults podcasts={podcasts} />
+    <NoPodcastsResults podcasts={podcasts} />
   )
 }

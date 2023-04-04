@@ -8,7 +8,7 @@ export const searchPodcasts = async () => {
 
     return podcasts?.map((podcast) => ({
       id: podcast.id.attributes['im:id'],
-      title: podcast.title.label,
+      title: podcast['im:name'].label.toUpperCase(),
       author: podcast['im:artist'].label,
       image: podcast['im:image'][2].label
     }))

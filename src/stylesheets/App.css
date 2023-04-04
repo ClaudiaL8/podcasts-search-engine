@@ -1,0 +1,15 @@
+.App {
+  padding: 0 200px;
+}
+
+.App header {
+  /* margin: 0 300px 20px; */
+  border-bottom: 1px solid #ccc;
+}
+
+.App h1 {
+  margin-bottom: 10px;
+}
+
+.App .main {
+}
