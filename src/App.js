@@ -8,7 +8,7 @@ function App() {
   return (
     <Container className="App">
       <header>HEADER</header>
-      <main>
+      <main className="main">
         <Router>
           <Routes>
             <Route exact path="/" element={<Podcaster />} />

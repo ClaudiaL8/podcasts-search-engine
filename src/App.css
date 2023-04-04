@@ -1,3 +1,43 @@
-.App {
+.main {
+  padding-top: 200px;
+}
+
+.podcasts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+}
+
+.podcast h3,
+.podcast p {
+  margin: 0;
+}
+
+.podcast {
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  margin-bottom: 200px;
+}
+
+.podcast img {
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.podcast div {
+  height: calc(100% - 50%);
+  margin-top: 50%;
   text-align: center;
+  padding: 20px;
 }

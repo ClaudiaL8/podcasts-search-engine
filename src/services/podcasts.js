@@ -4,8 +4,14 @@ export const searchPodcasts = async () => {
       `https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json`
     )
     const json = await response.json()
-    const podscasts = json.feed.entry
-    return podscasts
+    const podcasts = json.feed.entry
+
+    return podcasts?.map((podcast) => ({
+      id: podcast.id.attributes['im:id'],
+      title: podcast.title.label,
+      author: podcast['im:artist'].label,
+      image: podcast['im:image'][2].label
+    }))
   } catch (error) {
     throw new Error('Error searching movies')
   }
