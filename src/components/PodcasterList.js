@@ -1,13 +1,10 @@
 import '../stylesheets/podcastsList.css'
 
-function ListOfPoadcasts({ podcasts }) {
-  return (
-    <div className="podcaster-list__container">
-      <input
-        class="podcaster-list__input"
-        type="text"
-        placeholder="Ingrese un elemento"
-      />
+export function PodcasterList({ podcasts }) {
+  const hasPoadcasts = podcasts?.length > 0
+
+  function ListOfPoadcasts({ podcasts }) {
+    return (
       <ul className="podcaster-list__list">
         {podcasts.map((podcast) => (
           <li className="podcaster-list__item" key={podcast.id}>
@@ -19,16 +16,13 @@ function ListOfPoadcasts({ podcasts }) {
           </li>
         ))}
       </ul>
-    </div>
-  )
-}
+    )
+  }
 
-function NoPodcastsResults() {
-  return <p>no se encontraron resultados </p>
-}
+  function NoPodcastsResults() {
+    return <p>no se encontraron resultados </p>
+  }
 
-export function PodcasterList({ podcasts }) {
-  const hasPoadcasts = podcasts?.length > 0
   return hasPoadcasts ? (
     <ListOfPoadcasts podcasts={podcasts} />
   ) : (
