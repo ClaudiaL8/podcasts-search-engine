@@ -14,7 +14,7 @@ export function usePodcaster() {
       const today = new Date().toISOString().slice(0, 10)
       localStorage.setItem('myData', JSON.stringify({ date: today, data }))
     } catch (error) {
-      console.log(error.message)
+      console.error(error)
     } finally {
       setLoading(false)
     }
