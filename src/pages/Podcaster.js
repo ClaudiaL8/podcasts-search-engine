@@ -12,8 +12,14 @@ export function Podcaster() {
   }
 
   const filterPodcasts = () => {
+    const lowerCaseSearch = search.toLowerCase()
     const newPodcasts = podcasts.filter((podcast) => {
-      return podcast.title.toLowerCase().includes(search.toLowerCase())
+      const titleToLowerCase = podcast.title.toLowerCase()
+      const authorToLowerCase = podcast.author.toLowerCase()
+      return (
+        titleToLowerCase.includes(lowerCaseSearch) ||
+        authorToLowerCase.includes(lowerCaseSearch)
+      )
     })
     return newPodcasts
   }

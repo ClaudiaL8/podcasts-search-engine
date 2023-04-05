@@ -5,31 +5,11 @@ export function usePodcaster() {
   const [podcasts, setPodcasts] = useState([])
   const [loading, setLoading] = useState(false)
 
-  const getData = useCallback(() => {
-    const storedData = localStorage.getItem('myData')
-    if (storedData) {
-      const { date, data } = JSON.parse(storedData)
-      const today = new Date().toISOString().slice(0, 10)
-      if (today !== date) {
-        getPodcasts()
-      } else {
-        setPodcasts(data)
-      }
-    } else {
-      getPodcasts()
-    }
-  }, [])
-
-  useEffect(() => {
-    getData()
-  }, [getData])
-
-  const getPodcasts = async () => {
+  const getPodcasts = useCallback(async () => {
     try {
       setLoading(true)
       const newPodcasts = await searchPodcasts()
       setPodcasts(newPodcasts)
-
       const data = newPodcasts
       const today = new Date().toISOString().slice(0, 10)
       localStorage.setItem('myData', JSON.stringify({ date: today, data }))
@@ -38,7 +18,20 @@ export function usePodcaster() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
-  return { podcasts, getPodcasts, loading }
+  useEffect(() => {
+    const storedData = localStorage.getItem('myData')
+    if (storedData) {
+      const { date, data } = JSON.parse(storedData)
+      const today = new Date().toISOString().slice(0, 10)
+      if (today === date) {
+        setPodcasts(data)
+        return
+      }
+    }
+    getPodcasts()
+  }, [getPodcasts])
+
+  return { podcasts, loading }
 }
