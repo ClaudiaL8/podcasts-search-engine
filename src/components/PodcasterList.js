@@ -7,7 +7,11 @@ export function PodcasterList({ podcasts }) {
     return (
       <ul className="podcaster-list__list">
         {podcasts.map((podcast) => (
-          <li className="podcaster-list__item" key={podcast.id}>
+          <li
+            className="podcaster-list__item"
+            key={podcast.id}
+            onClick={() => console.log(podcast)}
+          >
             <img src={podcast.image} alt={podcast.title}></img>
             <div>
               <h3>{podcast.title}</h3>
