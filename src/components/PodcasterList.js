@@ -3,6 +3,11 @@ import '../stylesheets/podcastsList.css'
 export function PodcasterList({ podcasts }) {
   const hasPoadcasts = podcasts?.length > 0
 
+  const handlePodcastClick = (podcast) => {
+    const editionUrl = `/podcast/${podcast.id}`
+    return window.open(editionUrl, editionUrl)
+  }
+
   function ListOfPoadcasts({ podcasts }) {
     return (
       <ul className="podcaster-list__list">
@@ -10,7 +15,7 @@ export function PodcasterList({ podcasts }) {
           <li
             className="podcaster-list__item"
             key={podcast.id}
-            onClick={() => console.log(podcast)}
+            onClick={() => handlePodcastClick(podcast)}
           >
             <img src={podcast.image} alt={podcast.title}></img>
             <div>
