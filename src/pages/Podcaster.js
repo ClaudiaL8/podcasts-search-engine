@@ -43,5 +43,3 @@ export function Podcaster() {
     </div>
   )
 }
-
-export default Podcaster

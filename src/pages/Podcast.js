@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSelectPodcast } from '../hooks/useSelectPodcast'
-import PodcastDetailCard from '../components/PodcastDetailCard'
-import PodcastDetailEpisodes from '../components/PodcastDetailEpisodes'
+import { PodcastDetailCard } from '../components/PodcastDetailCard'
+import { PodcastDetailEpisodes } from '../components/PodcastDetailEpisodes'
 
 export function Podcast() {
   const { podcastDetails, findPodcast, loading } = useSelectPodcast()
@@ -27,5 +27,3 @@ export function Podcast() {
     </>
   )
 }
-
-export default Podcast

@@ -19,5 +19,3 @@ export function PodcastDetailCard({ podcastDetails }) {
     </div>
   )
 }
-
-export default PodcastDetailCard
