@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useSelectPodcast } from '../hooks/useSelectPodcast'
 import '../stylesheets/podcastDetails.css'
 
-export function Podcast(props) {
+export function Podcast() {
   const { podcastDetails, findPodcast } = useSelectPodcast()
 
   const currentUrl = window.location.href
@@ -12,8 +12,6 @@ export function Podcast(props) {
   useEffect(() => {
     findPodcast(selectedPodcastId)
   }, [findPodcast, selectedPodcastId])
-
-  console.log({ podcastDetails })
 
   return (
     <div className="podcast-details__container">

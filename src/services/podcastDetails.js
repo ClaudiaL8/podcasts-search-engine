@@ -1,9 +1,9 @@
-import { prefix, prefix2 } from './prefixCors'
+import { prefixCors, prefixJson } from './prefixCors'
 
 export const searchPodcastDetails = async (podcastId) => {
   try {
     const response = await fetch(
-      `${prefix}https://itunes.apple.com/lookup?id=${podcastId}`
+      `${prefixCors}https://itunes.apple.com/lookup?id=${podcastId}`
     )
     const json = await response.json()
     console.log(json.results[0])

@@ -1,2 +1,2 @@
-export const prefix = 'https://cors-anywhere.herokuapp.com/'
-export const prefix2 = 'https://allorigins.win/ '
+export const prefixCors = 'https://cors-anywhere.herokuapp.com/'
+export const prefixJson = 'https://allorigins.win/ '

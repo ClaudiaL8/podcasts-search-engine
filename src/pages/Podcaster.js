@@ -34,7 +34,7 @@ export function Podcaster() {
         value={search}
       />
       {loading ? (
-        <p>Cargando...</p>
+        <p>Loading...</p>
       ) : (
         <PodcasterList podcasts={filterPodcasts()} />
       )}

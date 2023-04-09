@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 
 export function useSelectPodcast() {
   const [podcastDetails, setPodcastDetails] = useState('')
@@ -21,7 +21,7 @@ export function useSelectPodcast() {
     }
   }
 
-  const findSelectPodcast = (selectedPodcast) => {
+  const findSelectPodcast = useCallback((selectedPodcast) => {
     const storedData = localStorage.getItem('podcastsDetails')
     if (storedData) {
       const { date, data } = JSON.parse(storedData)
@@ -39,14 +39,17 @@ export function useSelectPodcast() {
       }
     }
     getPodcastDetails([], selectedPodcast)
-  }
+  }, [])
 
-  const findPodcast = (id) => {
-    const storedPodcastsData = localStorage.getItem('podcastsList')
-    const { data } = JSON.parse(storedPodcastsData)
-    const findPodcast = data?.find((podcast) => podcast?.id === id)
-    findSelectPodcast(findPodcast)
-  }
+  const findPodcast = useCallback(
+    (id) => {
+      const storedPodcastsData = localStorage.getItem('podcastsList')
+      const { data } = JSON.parse(storedPodcastsData)
+      const findPodcast = data?.find((podcast) => podcast?.id === id)
+      findSelectPodcast(findPodcast)
+    },
+    [findSelectPodcast]
+  )
 
   return {
     podcastDetails,
