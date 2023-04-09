@@ -1,27 +1,13 @@
-import { prefixCors, prefixJson } from './prefixCors'
+import { prefixCors, prefixJson } from './prefixUls'
 
-export const searchPodcastDetails = async (podcastId) => {
+export const searchPodcastDetails = async (selectedPodcast) => {
   try {
     const response = await fetch(
-      `${prefixCors}https://itunes.apple.com/lookup?id=${podcastId}`
+      `${prefixCors}https://itunes.apple.com/lookup?id=${selectedPodcast.id}`
     )
     const json = await response.json()
-    console.log(json.results[0])
-    const {
-      trackViewUrl,
-      collectionName,
-      artistName,
-      artworkUrl600,
-      trackCount
-    } = json.results[0]
-    const newPodcast = {
-      trackViewUrl,
-      collectionName,
-      artistName,
-      artworkUrl600,
-      trackCount
-    }
-    return newPodcast
+    const { trackCount } = json.results[0]
+    return { trackCount }
   } catch (error) {
     console.log({ error })
     throw new Error('Error searching podcast details')

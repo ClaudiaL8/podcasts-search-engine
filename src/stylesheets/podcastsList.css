@@ -3,18 +3,42 @@
   flex-direction: column;
 }
 
-.podcaster-list__input {
+.podcaster-list__searcher {
+  margin-top: 20px;
+  margin-right: 20px;
+  display: flex;
   align-self: end;
-  margin-bottom: 100px;
-  width: 400px;
+  justify-content: center;
+}
+
+.podcaster-list__searcher p {
+  background-color: #0070c9;
+  color: white;
+  padding: 0 5px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0;
+  height: fit-content;
+  align-self: center;
+}
+
+.podcaster-list__searcher input {
+  border-radius: 5px;
+  border: 0.5px solid #ccc;
+  height: 30px;
+  margin-left: 10px;
+  padding-left: 5px;
+  width: 220px;
 }
 
 .podcaster-list__list {
   display: grid;
   width: 100%;
-  grid-template-columns: 15% 15% 15% 15%;
+  grid-template-columns: 20% 20% 20% 20%;
   gap: 30px;
   justify-content: center;
+  margin-top: 200px;
 }
 
 .podcaster-list__item {

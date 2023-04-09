@@ -1,19 +1,25 @@
 import { useState, useCallback } from 'react'
+import { searchPodcastDetails } from '../services/podcastDetails'
 
 export function useSelectPodcast() {
   const [podcastDetails, setPodcastDetails] = useState('')
   const [loading, setLoading] = useState(false)
 
   const getPodcastDetails = async (data, selectedPodcast) => {
-    setPodcastDetails(selectedPodcast)
     try {
       setLoading(true)
       const today = new Date().toISOString().slice(0, 10)
-      const newArray = [...data, selectedPodcast]
+      const newPodcastSelected = await searchPodcastDetails(selectedPodcast)
+      const newPodcast = {
+        ...selectedPodcast,
+        ...newPodcastSelected
+      }
+      const newArray = [...data, newPodcast]
       localStorage.setItem(
         'podcastsDetails',
         JSON.stringify({ date: today, data: newArray })
       )
+      setPodcastDetails(newPodcast)
     } catch (error) {
       console.error(error)
     } finally {
@@ -53,6 +59,7 @@ export function useSelectPodcast() {
 
   return {
     podcastDetails,
-    findPodcast
+    findPodcast,
+    loading
   }
 }

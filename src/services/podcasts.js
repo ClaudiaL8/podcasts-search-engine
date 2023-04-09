@@ -10,7 +10,8 @@ export const searchPodcasts = async () => {
       title: podcast['im:name'].label.toUpperCase(),
       author: podcast['im:artist'].label,
       image: podcast['im:image'][2].label,
-      description: podcast.summary.label
+      description: podcast.summary.label,
+      url: podcast.link.attributes.href
     }))
   } catch (error) {
     throw new Error('Error searching podcasts')

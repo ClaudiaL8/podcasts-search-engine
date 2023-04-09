@@ -26,13 +26,15 @@ export function Podcaster() {
 
   return (
     <div className="podcaster-list__container">
-      <input
-        className="podcaster-list__input"
-        type="text"
-        placeholder="Ingrese un elemento"
-        onChange={handleSearch}
-        value={search}
-      />
+      <div className="podcaster-list__searcher">
+        <p>{podcasts.length}</p>
+        <input
+          type="text"
+          placeholder="Filter podcasts.."
+          onChange={handleSearch}
+          value={search}
+        />
+      </div>
       {loading ? (
         <p>Loading...</p>
       ) : (
