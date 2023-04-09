@@ -1,7 +1,7 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { searchPodcastDetails } from '../services/podcastDetails'
 
-export function useSelectPodcast() {
+export function usePodcastDetails() {
   const [podcastDetails, setPodcastDetails] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -56,6 +56,13 @@ export function useSelectPodcast() {
     },
     [findSelectPodcast]
   )
+
+  useEffect(() => {
+    const currentUrl = window.location.href
+    const currentUrlSegments = currentUrl.split('/')
+    const selectedPodcastId = currentUrlSegments.pop()
+    findPodcast(selectedPodcastId)
+  }, [findPodcast])
 
   return {
     podcastDetails,

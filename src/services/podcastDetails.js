@@ -1,4 +1,3 @@
-import { prefixCors, prefixJson } from './prefixUls'
 import { convertMsToMinSec, getFormattedDate } from '../utils/usefulFunctions'
 
 export const searchPodcastDetails = async (selectedPodcast) => {
@@ -8,13 +7,13 @@ export const searchPodcastDetails = async (selectedPodcast) => {
     )
     const json = await response.json()
     const { resultCount, results } = json
-    console.log({ results })
     const episodes = results?.map((episode) => ({
       id: episode.trackId,
       name: episode.trackName,
       date: getFormattedDate(episode.releaseDate),
       duration: convertMsToMinSec(episode.trackTimeMillis),
-      trackUrl: episode.trackViewUrl
+      episodeUrl: episode.episodeUrl,
+      description: episode.description
     }))
     return { resultCount, episodes }
   } catch (error) {

@@ -1,21 +1,14 @@
-import { useSelectPodcast } from '../hooks/useSelectPodcast'
+import { useEpisode } from '../hooks/useEpisode'
 import { PodcastDetailCard } from '../components/PodcastDetailCard'
 import { PodcastDetailPlayer } from '../components/PodcastDetailPlayer'
 
 export function PodcastPlayer() {
-  const { podcastDetails, findPodcast, loading } = useSelectPodcast()
-  console.log({ podcastDetails })
+  const { currentPodcast, currentEpisode } = useEpisode()
 
   return (
-    <>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div className="podcast-details__container">
-          <PodcastDetailCard podcastDetails={podcastDetails} />
-          <PodcastDetailPlayer podcastDetails={podcastDetails} />
-        </div>
-      )}
-    </>
+    <div className="podcast-details__container">
+      <PodcastDetailCard podcastDetails={currentPodcast} />
+      <PodcastDetailPlayer currentEpisode={currentEpisode} />
+    </div>
   )
 }

@@ -1,18 +1,9 @@
-import { useEffect } from 'react'
-import { useSelectPodcast } from '../hooks/useSelectPodcast'
+import { usePodcastDetails } from '../hooks/usePodcastDetails'
 import { PodcastDetailCard } from '../components/PodcastDetailCard'
 import { PodcastDetailEpisodes } from '../components/PodcastDetailEpisodes'
 
 export function Podcast() {
-  const { podcastDetails, findPodcast, loading } = useSelectPodcast()
-
-  const currentUrl = window.location.href
-  const currentUrlSegments = currentUrl.split('/')
-  const selectedPodcastId = currentUrlSegments.pop()
-
-  useEffect(() => {
-    findPodcast(selectedPodcastId)
-  }, [findPodcast, selectedPodcastId])
+  const { podcastDetails, loading } = usePodcastDetails()
 
   return (
     <>
