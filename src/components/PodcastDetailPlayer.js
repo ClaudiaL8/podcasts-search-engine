@@ -1,4 +1,4 @@
-import AudioPlayer from './AudioPlayer'
+import { AudioPlayer } from './AudioPlayer'
 import '../stylesheets/podcastDetailPlayer.css'
 
 export function PodcastDetailPlayer({ currentEpisode }) {
@@ -7,6 +7,7 @@ export function PodcastDetailPlayer({ currentEpisode }) {
     <div className="podcast-details__player">
       <h3>{name}</h3>
       <p>{description}</p>
+      {episodeUrl && <AudioPlayer episodeUrl={episodeUrl} />}
     </div>
   )
 }

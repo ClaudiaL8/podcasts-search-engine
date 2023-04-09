@@ -4,3 +4,7 @@
   padding: 20px;
   height: fit-content;
 }
+
+audio {
+  width: 100%;
+}
