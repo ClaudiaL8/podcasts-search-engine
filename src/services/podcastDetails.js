@@ -9,6 +9,7 @@ export const searchPodcastDetails = async (selectedPodcast) => {
     const json = await response.json()
     const { resultCount, results } = json
     const episodes = results?.map((episode) => ({
+      id: episode.trackId,
       name: episode.trackName,
       date: getFormattedDate(episode.releaseDate),
       duration: convertMsToMinSec(episode.trackTimeMillis)
