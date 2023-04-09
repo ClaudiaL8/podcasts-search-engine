@@ -37,15 +37,26 @@ export function Podcast() {
               </div>
             </div>
           </div>
-          <div className="podcast-details__episodes">
-            <h3 className="podcast-details__episodes__number">
-              Episodes: {podcastDetails?.trackCount}
+          <div>
+            <h3 className="podcast-details__episodes__title">
+              Episodes: {podcastDetails?.resultCount}
             </h3>
             <ul className="podcast-details__episodes__list">
-              <li key={'primero'}>primero</li>
-              <li key={'segundo'}>segundo </li>
-              <li key={'tercero'}>tercero</li>
-              <li key={'cuarto'}>cuarto</li>
+              <div className="header-row">
+                <div className="header">Title</div>
+                <div className="header">Date</div>
+                <div className="header">Duration</div>
+              </div>
+              {podcastDetails?.episodes?.map((episode, index) => (
+                <li
+                  key={episode.id}
+                  className={`list-item ${index % 2 === 0 ? 'even' : 'odd'}`}
+                >
+                  <div className="column">{episode.name}</div>
+                  <div className="column">{episode.date}</div>
+                  <div className="column">{episode.duration}</div>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
