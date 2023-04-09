@@ -10,10 +10,6 @@
 }
 
 .podcaster-list__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
   display: grid;
   width: 100%;
   grid-template-columns: 15% 15% 15% 15%;
@@ -59,4 +55,10 @@
 
 .podcaster-list__item p {
   margin: 0;
+}
+
+.podcaster-list__item__link {
+  text-decoration: none;
+  color: 'inherit';
+  height: '100%';
 }

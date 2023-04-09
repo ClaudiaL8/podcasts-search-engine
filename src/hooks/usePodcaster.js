@@ -12,7 +12,10 @@ export function usePodcaster() {
       setPodcasts(newPodcasts)
       const data = newPodcasts
       const today = new Date().toISOString().slice(0, 10)
-      localStorage.setItem('myData', JSON.stringify({ date: today, data }))
+      localStorage.setItem(
+        'podcastsList',
+        JSON.stringify({ date: today, data })
+      )
     } catch (error) {
       console.error(error)
     } finally {
@@ -21,7 +24,7 @@ export function usePodcaster() {
   }, [])
 
   useEffect(() => {
-    const storedData = localStorage.getItem('myData')
+    const storedData = localStorage.getItem('podcastsList')
     if (storedData) {
       const { date, data } = JSON.parse(storedData)
       const today = new Date().toISOString().slice(0, 10)

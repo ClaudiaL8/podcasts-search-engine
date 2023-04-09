@@ -5,14 +5,14 @@ export const searchPodcasts = async () => {
     )
     const json = await response.json()
     const podcasts = json.feed.entry
-
     return podcasts?.map((podcast) => ({
       id: podcast.id.attributes['im:id'],
       title: podcast['im:name'].label.toUpperCase(),
       author: podcast['im:artist'].label,
-      image: podcast['im:image'][2].label
+      image: podcast['im:image'][2].label,
+      description: podcast.summary.label
     }))
   } catch (error) {
-    throw new Error('Error searching movies')
+    throw new Error('Error searching podcasts')
   }
 }
