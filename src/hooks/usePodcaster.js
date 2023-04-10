@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { searchPodcasts } from '../services/podcasts'
+import { storedDateKey, storedPodcastList } from '../utils/constants'
 
 export function usePodcaster() {
   const [podcasts, setPodcasts] = useState([])
@@ -11,7 +12,7 @@ export function usePodcaster() {
       const newPodcasts = await searchPodcasts()
       setPodcasts(newPodcasts)
       const data = newPodcasts
-      localStorage.setItem('podcastsList', JSON.stringify(data))
+      localStorage.setItem(storedPodcastList, JSON.stringify(data))
     } catch (error) {
       console.error(error)
     } finally {
@@ -20,7 +21,7 @@ export function usePodcaster() {
   }, [])
 
   const getData = useCallback(() => {
-    const storedData = localStorage.getItem('podcastsList')
+    const storedData = localStorage.getItem(storedPodcastList)
     if (storedData) {
       const podcastsList = JSON.parse(storedData)
       setPodcasts(podcastsList)
@@ -30,17 +31,17 @@ export function usePodcaster() {
   }, [getPodcasts])
 
   const checkLocalStorage = useCallback(() => {
-    const storedDate = localStorage.getItem('storedDate')
+    const storedDate = localStorage.getItem(storedDateKey)
     const today = new Date().toISOString().slice(0, 10)
     if (storedDate) {
       if (today !== storedDate) {
         localStorage.clear()
-        localStorage.setItem('storedDate', today)
+        localStorage.setItem(storedDateKey, today)
         getData()
         return
       }
     }
-    localStorage.setItem('storedDate', today)
+    localStorage.setItem(storedDateKey, today)
     getData()
   }, [getData])
 

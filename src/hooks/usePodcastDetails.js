@@ -1,5 +1,10 @@
 import { useState, useCallback, useEffect } from 'react'
 import { searchPodcastDetails } from '../services/podcastDetails'
+import {
+  storedDateKey,
+  storedPodcastsDetails,
+  storedPodcastList
+} from '../utils/constants'
 
 export function usePodcastDetails() {
   const [podcastDetails, setPodcastDetails] = useState('')
@@ -14,7 +19,7 @@ export function usePodcastDetails() {
         ...newPodcastSelected
       }
       const newArray = [...data, newPodcast]
-      localStorage.setItem('podcastsDetails', JSON.stringify(newArray))
+      localStorage.setItem(storedPodcastsDetails, JSON.stringify(newArray))
       setPodcastDetails(newPodcast)
     } catch (error) {
       console.error(error)
@@ -24,7 +29,7 @@ export function usePodcastDetails() {
   }
 
   const findSelectPodcast = useCallback((selectedPodcast) => {
-    const storedData = localStorage.getItem('podcastsDetails')
+    const storedData = localStorage.getItem(storedPodcastsDetails)
     if (storedData) {
       const podcastsDetails = JSON.parse(storedData)
       const findPodcast = podcastsDetails?.find(
@@ -42,7 +47,7 @@ export function usePodcastDetails() {
 
   const findPodcast = useCallback(
     (id) => {
-      const storedPodcastsData = localStorage.getItem('podcastsList')
+      const storedPodcastsData = localStorage.getItem(storedPodcastList)
       const podcastsList = JSON.parse(storedPodcastsData)
       const findPodcast = podcastsList?.find((podcast) => podcast?.id === id)
       findSelectPodcast(findPodcast)
@@ -51,7 +56,7 @@ export function usePodcastDetails() {
   )
 
   const checkLocalStorage = useCallback(() => {
-    const storedDate = localStorage.getItem('storedDate')
+    const storedDate = localStorage.getItem(storedDateKey)
     const today = new Date().toISOString().slice(0, 10)
     if (storedDate) {
       if (today !== storedDate) {

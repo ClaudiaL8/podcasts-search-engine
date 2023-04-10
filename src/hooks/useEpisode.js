@@ -1,11 +1,12 @@
 import { useState, useCallback, useEffect } from 'react'
+import { storedDateKey, storedPodcastsDetails } from '../utils/constants'
 
 export function useEpisode() {
   const [currentPodcast, setCurrentPodcast] = useState('')
   const [currentEpisode, setCurrentEpisode] = useState('')
 
   const findEpisode = useCallback((podcastId, selectedEpisodeId) => {
-    const storedPodcastsData = localStorage.getItem('podcastsDetails')
+    const storedPodcastsData = localStorage.getItem(storedPodcastsDetails)
     if (storedPodcastsData) {
       const data = JSON.parse(storedPodcastsData)
       const findPodcast = data.find((podcast) => podcast.id === podcastId)
@@ -23,7 +24,7 @@ export function useEpisode() {
   const episodeIdPosition = 4
 
   const checkLocalStorage = useCallback(() => {
-    const storedDate = localStorage.getItem('storedDate')
+    const storedDate = localStorage.getItem(storedDateKey)
     const today = new Date().toISOString().slice(0, 10)
     if (storedDate) {
       if (today !== storedDate) {
