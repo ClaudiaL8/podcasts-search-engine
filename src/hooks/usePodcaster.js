@@ -11,11 +11,7 @@ export function usePodcaster() {
       const newPodcasts = await searchPodcasts()
       setPodcasts(newPodcasts)
       const data = newPodcasts
-      const today = new Date().toISOString().slice(0, 10)
-      localStorage.setItem(
-        'podcastsList',
-        JSON.stringify({ date: today, data })
-      )
+      localStorage.setItem('podcastsList', JSON.stringify(data))
     } catch (error) {
       console.error(error)
     } finally {
@@ -23,18 +19,34 @@ export function usePodcaster() {
     }
   }, [])
 
-  useEffect(() => {
+  const getData = useCallback(() => {
     const storedData = localStorage.getItem('podcastsList')
     if (storedData) {
-      const { date, data } = JSON.parse(storedData)
-      const today = new Date().toISOString().slice(0, 10)
-      if (today === date) {
-        setPodcasts(data)
-        return
-      }
+      const podcastsList = JSON.parse(storedData)
+      setPodcasts(podcastsList)
+      return
     }
     getPodcasts()
   }, [getPodcasts])
+
+  const checkLocalStorage = useCallback(() => {
+    const storedDate = localStorage.getItem('storedDate')
+    const today = new Date().toISOString().slice(0, 10)
+    if (storedDate) {
+      if (today !== storedDate) {
+        localStorage.clear()
+        localStorage.setItem('storedDate', today)
+        getData()
+        return
+      }
+    }
+    localStorage.setItem('storedDate', today)
+    getData()
+  }, [getData])
+
+  useEffect(() => {
+    checkLocalStorage()
+  }, [checkLocalStorage])
 
   return { podcasts, loading }
 }

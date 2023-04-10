@@ -1,7 +1,13 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 
-const Header = () => {
-  return <h1 onClick={() => (window.location.href = '/')}>Podcaster</h1>
+export function Header() {
+  return (
+    <header>
+      <h1>
+        <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>
+          Podcaster
+        </Link>
+      </h1>
+    </header>
+  )
 }
-
-export default Header

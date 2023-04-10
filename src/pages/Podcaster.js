@@ -6,12 +6,12 @@ export function Podcaster() {
   const { podcasts, loading } = usePodcaster()
   const [search, setSearch] = useState('')
 
-  const handleSearch = (e) => {
+  function handleSearch(e) {
     const value = e.target.value
     setSearch(value)
   }
 
-  const filterPodcasts = () => {
+  function filterPodcasts() {
     const lowerCaseSearch = search.toLowerCase()
     const newPodcasts = podcasts.filter((podcast) => {
       const titleToLowerCase = podcast.title.toLowerCase()
@@ -27,7 +27,7 @@ export function Podcaster() {
   return (
     <div className="podcaster-list__container">
       <div className="podcaster-list__searcher">
-        <p>{podcasts.length}</p>
+        <p>{filterPodcasts().length}</p>
         <input
           type="text"
           placeholder="Filter podcasts.."
